@@ -1,0 +1,14 @@
+{
+    "name": "n10s",
+    "shortName": "n10s",
+    "icons": [
+        {
+            "src": "./icon.png",
+            "type": "png"
+        }
+    ],
+    "neo4jDesktop": {
+        "apiVersion": "^1.4.0"
+    },
+    "homepage": "https://github.com/neo4j-labs/neosemantics"
+}
