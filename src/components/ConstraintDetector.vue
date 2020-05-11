@@ -13,8 +13,6 @@
 
             <pre v-html="createConstraintCypher" />
 
-            <!-- <installation-instructions /> -->
-
             <sui-message class="negative" v-if="error" v-html="error.message" />
 
             <sui-button primary @click="createConstraint">
@@ -30,6 +28,7 @@
 export default {
     name: 'constraint-detector',
     props: {
+        database: null,
         onConstraintsLoaded: Function,
     },
     data: () => ({
@@ -78,6 +77,11 @@ export default {
         createConstraintCypher() {
             return `CREATE CONSTRAINT ${this.name} ON (r:${this.label}) ASSERT r.${this.property} IS UNIQUE`
         }
+    },
+    watch: {
+        database() {
+            this.checkForConstraints()
+        },
     },
 }
 </script>

@@ -12,6 +12,8 @@
 
             <div class="ui secondary pointing menu right">
                 <router-link is="sui-menu-item" :to="{ name: 'config' }">Config</router-link>
+                <router-link is="sui-menu-item" :to="{ name: 'mapping' }">Mapping</router-link>
+                <router-link is="sui-menu-item" :to="{ name: 'validation' }">Validation</router-link>
                 <router-link is="sui-menu-item" :to="{ name: 'preview' }">Preview</router-link>
                 <router-link is="sui-menu-item" :to="{ name: 'import' }">Import</router-link>
                 <router-link is="sui-menu-item" :to="{ name: 'export' }">Export</router-link>

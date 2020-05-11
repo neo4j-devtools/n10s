@@ -1,0 +1,3 @@
+ * 'LABELS', rdf:type statements are imported as node labels in Neo4j
+* 'NODES', rdf:type statements are imported as `rdf__type` relationships to a node representing the class
+* 'LABELS_AND_NODES' rdf:type statements are stored (in a redundant way) as in both previously described cases.

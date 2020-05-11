@@ -9,6 +9,8 @@ import Delete from './routes/Delete'
 import Export from './routes/Export'
 import Mapping from './routes/Mapping'
 
+import Validation from './routes/Validation'
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -19,6 +21,8 @@ export default new VueRouter({
         { name: 'delete',  path: '/delete', component: Delete, },
         { name: 'export',  path: '/export', component: Export, },
         { name: 'mapping',  path: '/mapping', component: Mapping, },
+
+        { name: 'validation',  path: '/validation', component: Validation, },
 
         // Redirect to Home
         { name: 'home', path: '/', component: Home, },

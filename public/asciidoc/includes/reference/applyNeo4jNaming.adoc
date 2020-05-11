@@ -1,0 +1,2 @@
+when set to true and in combination with `handleVocabUris: 'IGNORE'`, Neo4j
+capitalisation is applied to vocabulary elements (all caps for relationship types, capital first for labels, etc.)

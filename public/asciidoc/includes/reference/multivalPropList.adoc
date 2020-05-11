@@ -1,0 +1,1 @@
+List of property names (full uri) to be stored as arrays. The rest are treated as 'OVERWRITE'.

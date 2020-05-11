@@ -1,17 +1,26 @@
 <template>
     <div id="app" class="ui">
-        <vue-neo4j-connect v-if="!driver" :onConnect="onConnect" protocol="bolt" password="neo">
+        <neo4j-connect v-if="!driver" :onConnect="onConnect" protocol="bolt" password="neo">
             <img class="logo" slot="logo" src="./assets/img/neosemantics.png" alt="Neosemantics" />
             <div class="footer" slot="footer">n10s v{{ version }}</div>
-        </vue-neo4j-connect>
+        </neo4j-connect>
 
-        <plugin-detector v-else-if="!plugins" :onPluginsLoaded="onPluginsLoaded" :onVersionLoaded="onVersionLoaded" />
-        <constraint-detector v-else-if="!constraints" :onConstraintsLoaded="onConstraintsLoaded" />
+        <template v-else>
+            <neo4j-database-information
+                :onDatabaseChange="handleDatabaseChange"
+                openIcon="angle up"
+                closeIcon="angle down"
+            />
 
-        <div v-else>
-            <n10s-navigation />
-            <router-view />
-        </div>
+            <plugin-detector v-if="!plugins" :onPluginsLoaded="onPluginsLoaded" :onVersionLoaded="onVersionLoaded" />
+            <constraint-detector v-else-if="!constraints" :database="database" :onConstraintsLoaded="onConstraintsLoaded" />
+
+            <div class="n10s" v-else>
+                <n10s-navigation />
+                <router-view />
+            </div>
+        </template>
+
     </div>
 </template>
 
@@ -20,7 +29,6 @@ import { version, } from '../package.json'
 import n10sNavigation from './components/layout/Navigation'
 import PluginDetector from './components/PluginDetector'
 import ConstraintDetector from './components/ConstraintDetector'
-
 
 export default {
     name: 'App',
@@ -31,6 +39,7 @@ export default {
         neo4jVersion: false,
         plugins: false,
         constraints: false,
+        database: null,
     }),
     components: {
         n10sNavigation,
@@ -54,11 +63,20 @@ export default {
         onConstraintsLoaded(constraints) {
             this.constraints = constraints
         },
+        handleDatabaseChange(database) {
+            this.constraints = false
+            this.database = database
+        },
     },
 }
 </script>
 
-<style lang="css">
+<style lang="postcss">
+.n10s .sidebar {
+    display: flex;
+    width: 100px;
+}
+
 .vue-neo4j.connect {
     background: #f2f2f2;
 
@@ -94,16 +112,31 @@ export default {
     border-color: #0047a2 !important;
 }
 
+.neo4j-database {
+    z-index: 20000;
+}
+
 .footer {
     color: rgba(0, 0, 0, .4);
     padding: 24px 0 12px;
 }
 
 .main {
-    margin: 2em 0;
+    margin: 2em 0 8em;
 }
 
-pre {
+.neo4j-database  {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+pre, textarea {
+    font-family: monospace !important;
     width: 100%;
     overflow-x: auto;
     padding: 12px 8px;
@@ -138,4 +171,6 @@ pre {
 .ui.dimmer .ui.message pre {
     text-align: left !important;
 }
+
+
 </style>

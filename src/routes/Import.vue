@@ -1,5 +1,8 @@
 <template>
-    <sui-container class="main">
+    <n10s-query-form
+        buttonText="Import Data"
+        procedure="n10s.rdf.import"
+    >
         <h1 is="sui-header">Import Data</h1>
 
         <p>
@@ -9,7 +12,7 @@
             RDF dynamically. More on how to parameterise the access to web services in section x[link].
         </p>
 
-        <sui-form>
+        <!-- <sui-form>
             <sui-form-field>
                 <label>URL</label>
                 <sui-input
@@ -44,13 +47,13 @@
             :error="error"
             :tab="tab"
             :buttonText="buttonText"
-        />
-    </sui-container>
+        /> -->
+    </n10s-query-form>
 </template>
 
 <script>
 import { formats, url } from '../constants'
-import CypherComponent from './CypherComponent'
+import CypherComponent from '@/components/CypherComponent'
 
 export default {
     name: 'import',

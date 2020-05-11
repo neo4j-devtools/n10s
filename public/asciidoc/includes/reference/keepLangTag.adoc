@@ -1,0 +1,2 @@
+when set to true, the language tag is kept along with the property value. Useful for multilingual datasets.
+Use helper function `getLangValue` to get specific values.

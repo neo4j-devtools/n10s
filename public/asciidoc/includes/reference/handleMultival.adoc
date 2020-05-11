@@ -1,0 +1,2 @@
+* 'OVERWRITE' property values are kept single valued. Multiple values in the imported RDF are overwriten (only the last one is kept)
+* 'ARRAY' properties are stored in an array enabling storage of multiple values. All of them unless `multivalPropList` is set.

@@ -13,7 +13,6 @@
                 </sui-card-header>
             </sui-card-content>
             <sui-card-content>
-                <!-- <h2 is="sui-header" class="medium">&lt;{{ selectedNode.identity.toNumber() }}&gt;</h2> -->
                 <div class="ui list">
                     <div class="item" v-for="(value, key) in selectedNode.properties" :key="key">
                         <div class="header" v-html="key" />
@@ -114,6 +113,11 @@ export default {
                 if ( params.nodes.length ) this.selectedNode = this.nodes.find(node => node.identity.toNumber() === params.nodes[0])
                 else if ( params.edges.length ) this.selectedRelationship = this.edges.find(rel => rel.identity.toNumber() === params.edges[0])
             })
+        },
+    },
+    watch: {
+        result() {
+            this.renderGraph()
         },
     },
 }

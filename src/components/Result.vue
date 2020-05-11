@@ -38,7 +38,7 @@ export default {
     },
     computed: {
         isTable() {
-            return this.displayAs === 'table'
+            return this.displayAs !== 'preview'
         },
         noResults() {
             return this.result && !this.result.records.length

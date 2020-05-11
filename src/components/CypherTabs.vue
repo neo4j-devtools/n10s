@@ -5,9 +5,11 @@
         </sui-tab-pane>
         <sui-tab-pane title="Results">
             <div class="results">
-                <sui-message negative v-if="error" header="Error Running Query" :content="error.message" />
+                <sui-loader :active="loading" centered inline />
 
-                <n10s-result v-else-if="result" :result="result" :displayAs="displayAs" />
+                <sui-message negative v-if="!loading && error" header="Error Running Query" :content="error.message" />
+
+                <n10s-result v-else-if="!loading && result" :result="result" :displayAs="displayAs" />
                 <p v-else>Click <strong>&lt; {{ buttonText }} &gt;</strong> to run your query.</p>
             </div>
         </sui-tab-pane>
@@ -30,6 +32,7 @@ export default {
             type: Object,
             default: () => ({}),
         },
+        loading: Boolean,
         result: null,
         error: null,
         buttonText: {

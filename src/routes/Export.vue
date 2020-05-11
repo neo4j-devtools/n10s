@@ -1,11 +1,9 @@
 <template>
     <sui-container class="main">
         <h1 is="sui-header">Exporting RDF data</h1>
-        <p>n the previous section we covered how to ingest RDF into Neo4j, in this one we will focus on how to generate RDF from our Neo4j graph. We will see that it is possible to serialise in RDF any Neo4j graph, even in the case when the data in Neo4j is not the result of importing RDF.</p>
+        <p>In the previous section we covered how to ingest RDF into Neo4j, in this one we will focus on how to generate RDF from our Neo4j graph. We will see that it is possible to serialise in RDF any Neo4j graph, even in the case when the data in Neo4j is not the result of importing RDF.</p>
         <p>RDF is a W3C standard model for data interchange on the Web that represents data as a graph, hence the seamless serialisation of graph data from Neo4j in RDF as we’ll see.</p>
         <p>There are three main ways of generating RDF from your graph in Neo4j. Selecting a node in the graph by its unique identifier (id or uri), selecting a group of nodes by Label + property value and via Cypher. Let’s analyse each of them in detail.</p>
-
-
 
         <sui-form>
             <sui-form-field>
@@ -52,6 +50,7 @@ export default {
         endpoint: 'rdf',
         principal: false,
         credentials: false,
+        database: 'neo4j',
 
         loading: false,
         error: false,
@@ -64,25 +63,30 @@ export default {
         this.scheme = auth.scheme
         this.principal = auth.principal
         this.credentials = auth.credentials
+
+        if ( this.$neo4j.getDatabase() ) {
+            this.database = this.$neo4j.getDatabase()
+        }
     },
     computed: {
         url() {
             // TODO: Get the rdf endpoint from `CALL dbms.listConfig("dbms.unmanaged_extension_classes")`
-            return `${this.protocol}://${this.host}:${this.port}/${this.endpoint}/describe/id/${this.id}`
+            return `${this.protocol}://${this.host}:${this.port}/${this.endpoint}/${this.database}/describe/${this.id}`
         },
     },
     methods: {
         runQuery() {
+            const token = btoa(`${this.principal}:${this.credentials}`)
+
             fetch(this.url, {
                 headers: {
-                    authorization: `${this.scheme} ${this.principal}:${this.credentials}`
+                    Authorization: `Basic ${token}`
                 },
             })
-                .then(response => response.json())
-                .then(json => this.result = json)
+                .then(response => response.text())
+                .then(text => this.result = text)
                 .catch(e => this.error = e)
                 .finally(this.loading = false)
-
         },
     },
     watch: {

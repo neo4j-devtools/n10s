@@ -1,8 +1,9 @@
 export const handleVocabUriOptions = [
     { key: "SHORTEN", text: "SHORTEN", value: "SHORTEN", },
-    { key: "KEEP", text: "KEEP", value: "KEEP", },
     { key: "SHORTEN_STRICT", text: "SHORTEN_STRICT", value: "SHORTEN_STRICT", },
+    { key: "IGNORE", text: "IGNORE", value: "IGNORE", },
     { key: "MAP", text: "MAP", value: "MAP", },
+    { key: "KEEP", text: "KEEP", value: "KEEP", },
 ]
 
 export const handleMultivalOptions = [
@@ -25,14 +26,22 @@ export const formats = [
     { key: 'N-Quads', text: 'N-Quads', value: 'N-Quads', },
 ]
 
+export const boolean = [
+    { key: 'True', text: 'True', value: true, },
+    { key: 'False', text: 'False', value: false, },
+]
+
 export const url = 'https://raw.githubusercontent.com/jbarrasa/neosemantics/3.5/docs/rdf/nsmntx.ttl'
 
-export const previewTypes = [
+export const shaclUrl = 'https://raw.githubusercontent.com/neo4j-labs/neosemantics/4.0/src/test/resources/shacl/person2-shacl.ttl'
+
+export const outputFormats = [
     { key: 'stream', text: 'Stream (Table View)', value: 'stream', },
     { key: 'preview', text: 'Preview (Graph View)', value: 'preview', },
 ]
 
 export const queryTypes = [
-    { key: 'inline', text: 'Inline', value: 'inline', },
-    { key: 'fetch', text: 'Fetch', value: 'fetch', },
+    { key: 'local', text: 'Upload', value: 'local', },
+    { key: 'inline', text: 'Copy & Paste', value: 'inline', },
+    { key: 'fetch', text: 'Fetch from URL', value: 'fetch', },
 ]

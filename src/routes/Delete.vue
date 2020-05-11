@@ -48,7 +48,7 @@
 
 <script>
 import { formats, url } from '../constants'
-import CypherComponent from './CypherComponent'
+import CypherComponent from '@/components/CypherComponent'
 
 export default {
     name: 'delete',

@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { types } from 'neo4j-driver'
 
-
 export const resultToNodes = result => {
     return result.records.map(row => {
         return row.keys.map(key => {

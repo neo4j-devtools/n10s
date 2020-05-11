@@ -1,6 +1,6 @@
 {
   "name": "neosemantics",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,12 +9,14 @@
     "package": "npm run build && npm pack"
   },
   "dependencies": {
+    "asciidoctor": "^2.2.0",
     "core-js": "^3.6.4",
+    "nodemon": "^2.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.10.1",
     "visjs-network": "^4.24.11",
     "vue": "^2.6.11",
-    "vue-neo4j": "^0.3.3",
+    "vue-neo4j": "^0.4.0",
     "vue-router": "^3.1.6"
   },
   "devDependencies": {
