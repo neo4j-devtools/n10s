@@ -1,5 +1,5 @@
 # bump the version number
-# npm version patch
+npm version patch
 
 # remove old tgz files
 rm -f *.tgz
@@ -45,4 +45,4 @@ npx @neo4j/code-signer --verify \
   --app ./package \
   --root-cert ~/.ssh/neo4j_desktop.cert
 
-npm publish --dry-run --access public *.tgz
+npm publish --access public *.tgz
