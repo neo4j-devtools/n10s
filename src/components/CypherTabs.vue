@@ -1,5 +1,5 @@
 <template>
-  <sui-tab :active-index="tab">
+    <sui-tab class="cypher-tabs" :active-index="tab">
         <sui-tab-pane title="Preview Cypher">
             <pre v-html="cypher" />
         </sui-tab-pane>
@@ -49,7 +49,3 @@ export default {
     },
 }
 </script>
-
-<style>
-
-</style>

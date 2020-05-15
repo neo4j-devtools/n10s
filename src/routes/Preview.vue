@@ -3,11 +3,12 @@
         buttonText="Preview Data"
         procedure="n10s.rdf"
         showDisplayAs
+        queryLabel="RDF"
     >
         <h1 is="sui-header">Previewing Data</h1>
 
         <p>
-            Sometimes before we go ahead and import RDF data into Neo4j we want to see what it looks like or we may even want to take full control with Cypher over the data ingestion process and customise what to do with each parsed triple. For these purpose NSMNTX provides the following procedures.
+            Sometimes before you import RDF data into Neo4j you want to see what it looks like. The methods in this section will help you with that. You may even want to take full control with Cypher over the data ingestion process and customise what to do with each parsed triple. You can use the stream option below for that.
         </p>
     </n10s-query-form>
 </template>

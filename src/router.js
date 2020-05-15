@@ -8,6 +8,7 @@ import Preview from './routes/Preview'
 import Delete from './routes/Delete'
 import Export from './routes/Export'
 import Mapping from './routes/Mapping'
+import Namespaces from './routes/Namespaces'
 
 import Validation from './routes/Validation'
 
@@ -21,7 +22,7 @@ export default new VueRouter({
         { name: 'delete',  path: '/delete', component: Delete, },
         { name: 'export',  path: '/export', component: Export, },
         { name: 'mapping',  path: '/mapping', component: Mapping, },
-
+        { name: 'namespaces',  path: '/namespaces', component: Namespaces, },
         { name: 'validation',  path: '/validation', component: Validation, },
 
         // Redirect to Home

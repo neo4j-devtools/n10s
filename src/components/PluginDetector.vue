@@ -26,7 +26,6 @@ export default {
         InstallationInstructions
     },
     props: {
-        onVersionLoaded: Function,
         onPluginsLoaded: Function,
     },
     data: () => ({
@@ -40,22 +39,17 @@ export default {
     methods: {
         checkForPlugin() {
             this.$neo4j.run(`
-                CALL dbms.components() YIELD versions, edition
-                WITH distinct versions[0] AS version
-
                 CALL dbms.procedures() YIELD name
-                WITH version, name WHERE name STARTS WITH 'n10s' OR name STARTS WITH 'neosemantics'
-                WITH version, split(name, ".")[0] as prefix, count(*) AS count, collect(name) AS procedures
-                RETURN version, collect({prefix: prefix, count: count, procedures: procedures}) AS plugins
+                WITH name WHERE name STARTS WITH 'n10s' OR name STARTS WITH 'neosemantics'
+                WITH split(name, ".")[0] as prefix, count(*) AS count, collect(name) AS procedures
+                RETURN collect({prefix: prefix, count: count, procedures: procedures}) AS plugins
             `)
                 .then(({ records }) => {
                     const [ first ] = records
 
                     this.loading = false
-                    this.version = first ? first.get('version') : [];
                     this.plugins = first ? first.get('plugins') : [];
 
-                    this.onVersionLoaded(this.version)
                     this.onPluginsLoaded(this.plugins)
                 })
         },

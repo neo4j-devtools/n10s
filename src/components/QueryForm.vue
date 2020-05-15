@@ -1,10 +1,10 @@
 <template>
-    <sui-container class="main">
+    <sui-container>
         <slot />
 
          <sui-form>
             <sui-form-field>
-                <label>Query Source</label>
+                <label>{{ queryLabel }} Source</label>
                 <sui-dropdown
                     fluid
                     :options="queryTypes"
@@ -21,7 +21,7 @@
             </sui-form-field>
 
             <sui-form-field v-if="showTextbox">
-                <label>Query</label>
+                <label>{{ queryLabel }}</label>
                 <textarea v-model="value" />
             </sui-form-field>
 
@@ -64,8 +64,6 @@
             </sui-button>
         </sui-form>
 
-        <p>&nbsp;</p>
-
         <n10s-cypher-tabs
             v-if="cypher"
             :loading="loading"
@@ -103,6 +101,10 @@ export default {
         defaultUrl: {
             type: String,
             default: url
+        },
+        queryLabel: {
+            type: String,
+            default: 'Query',
         },
     },
     data: () => ({

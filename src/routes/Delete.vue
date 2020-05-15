@@ -1,5 +1,5 @@
 <template>
-    <sui-container class="main">
+    <sui-container>
         <h1 is="sui-header">Delete Data</h1>
 
         <p>
@@ -33,8 +33,6 @@
                 {{ buttonText }}
             </sui-button>
         </sui-form>
-
-        <p>&nbsp;</p>
 
         <n10s-cypher-tabs
             :cypher="cypher"
