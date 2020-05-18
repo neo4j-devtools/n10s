@@ -22,19 +22,20 @@
                 <n10s-navigation :handleDatabaseChange="handleDatabaseChange" />
                 <div class="main">
                     <router-view />
+                    <feedback />
                 </div>
             </div>
         </template>
-
     </div>
 </template>
 
 <script>
-import { version, } from '../package.json'
+import { name, version, } from '../package.json'
 import n10sNavigation from './components/layout/Navigation'
 import VersionDetector from './components/VersionDetector'
 import PluginDetector from './components/PluginDetector'
 import ConstraintDetector from './components/ConstraintDetector'
+import Feedback from './components/Feedback'
 
 export default {
     name: 'App',
@@ -52,10 +53,20 @@ export default {
         VersionDetector,
         PluginDetector,
         ConstraintDetector,
+        Feedback,
     },
     methods: {
         onConnect(driver) {
             this.driver = driver
+
+            this.$neo4j.desktop.sendMetrics(
+                name,
+                'login',
+                [
+                    { name: 'version', value: version } ,
+                    { name: 'path', value: this.$route.path } ,
+                ],
+            )
         },
         onVersionLoaded(neo4jVersion) {
             this.neo4jVersion = neo4jVersion
@@ -76,6 +87,18 @@ export default {
         handleDatabaseChange(database) {
             this.constraints = false
             this.database = database
+        },
+    },
+    watch: {
+        $route() {
+            this.$neo4j.desktop.sendMetrics(
+                name,
+                'pageview',
+                [
+                    { name: 'version', value: version },
+                    { name: 'path', value: this.$route.path } ,
+                ],
+            )
         },
     },
 }
@@ -133,6 +156,7 @@ export default {
 
 .n10s .main {
     display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
     height: 100%;
     overflow: auto;
