@@ -30,7 +30,7 @@
             Export
         </sui-button>
 
-        <pre v-if="result">{{ result }}</pre>
+        <pre v-if="result !== undefined">{{ result }}</pre>
         <sui-message negative v-if="error" header="Error Running Query" :content="error.message" />
     </sui-container>
 </template>
@@ -41,7 +41,7 @@ export default {
 
     data: () => ({
         id: 1,
-        result: false,
+        result: undefined,
         protocol: 'http',
         host: 'localhost',
         port: 7474,
@@ -84,7 +84,7 @@ export default {
                 .then(response => response.text())
                 .then(text => this.result = text)
                 .catch(e => this.error = e)
-                .finally(this.loading = false)
+                .then(this.loading = false)
         },
     },
     watch: {

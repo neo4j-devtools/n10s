@@ -1,7 +1,8 @@
 <template>
     <sui-tab class="cypher-tabs" :active-index="tab">
-        <sui-tab-pane title="Preview Cypher">
+        <sui-tab-pane :title="previewTitle">
             <pre v-html="cypher" />
+            <slot />
         </sui-tab-pane>
         <sui-tab-pane title="Results">
             <div class="results">
@@ -35,6 +36,10 @@ export default {
         loading: Boolean,
         result: null,
         error: null,
+        previewTitle: {
+            type: String,
+            default: 'Preview Cypher'
+        },
         buttonText: {
             type: String,
             default: 'Run Query'

@@ -51,15 +51,15 @@
                     <sui-button primary :loading="loading" @click.prevent="add">Add Namespace</sui-button>
                 </sui-form>
             </sui-tab-pane>
-            <sui-tab-pane title="Extract Namespaces from Text">
+            <sui-tab-pane title="Extract Namespaces from RDF">
                 <sui-form>
                     <sui-form-field>
-                        <label>Text</label>
+                        <label>RDF Query</label>
                         <textarea v-model="txt" rows="10"></textarea>
                     </sui-form-field>
 
                     <pre v-if="addFromTextCypher">{{ addFromTextCypher }}</pre>
-                    <sui-button primary :loading="loading" @click.prevent="addFromText">Add From Text</sui-button>
+                    <sui-button primary :loading="loading" @click.prevent="addFromText">Extract Namespaces</sui-button>
                 </sui-form>
             </sui-tab-pane>
         </sui-tab>
