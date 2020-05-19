@@ -67,6 +67,7 @@ export default {
                     { name: 'path', value: this.$route.path } ,
                 ],
             )
+            .catch(e => console.log(e))
         },
         onVersionLoaded(neo4jVersion) {
             this.neo4jVersion = neo4jVersion
@@ -99,6 +100,7 @@ export default {
                     { name: 'path', value: this.$route.path } ,
                 ],
             )
+            .catch(e => console.log(e))
         },
     },
 }

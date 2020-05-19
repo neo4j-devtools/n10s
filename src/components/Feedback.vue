@@ -65,7 +65,7 @@ export default {
             return this.$route.path
         },
         payload() {
-            let output = `project=${encodeURIComponent(name)}&url=${encodeURIComponent(this.url)}&helpful=${this.helpful}`
+            let output = `project=${encodeURIComponent(name)}&url=${encodeURIComponent(name + this.url)}&helpful=${this.helpful}`
 
             for ( let key of ['reason', 'moreInformation'] ) {
                 if ( this[ key ] && this[ key ] !== '' ) {
@@ -85,9 +85,15 @@ export default {
             this.helpful = value
         },
         sendFeedback() {
-            fetch(api, { method: 'POST', mode: 'no-cors', body: this.payload, headers: {
-                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            } })
+            fetch(api, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: this.payload,
+                referer: `neo4j-desktop://graph-apps/${name}`,
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                } ,
+            })
         },
         submit() {
             this.sendFeedback()

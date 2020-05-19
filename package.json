@@ -1,6 +1,6 @@
 {
   "name": "@graphapps/neosemantics",
-  "version": "0.2.2",
+  "version": "0.2.2-x",
   "neo4jDesktop": {
     "apiVersion": "^1.4.0"
   },
@@ -18,7 +18,7 @@
     "semver": "^7.3.2",
     "visjs-network": "^4.24.11",
     "vue": "^2.6.11",
-    "vue-neo4j": "^0.4.2",
+    "vue-neo4j": "^0.4.3",
     "vue-router": "^3.1.6"
   },
   "devDependencies": {
