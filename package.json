@@ -1,6 +1,6 @@
 {
   "name": "@graphapps/neosemantics",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "neo4jDesktop": {
     "apiVersion": "^1.4.0"
   },
