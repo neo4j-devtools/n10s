@@ -63,12 +63,11 @@ export default {
             this.$neo4j.desktop.sendMetrics(
                 name,
                 'login',
-                [
-                    { name: 'version', value: version } ,
-                    { name: 'path', value: this.$route.path } ,
-                ],
+                {
+                    version,
+                    path: this.$route.path
+                }
             )
-            .catch(e => console.log(e))
         },
         onVersionLoaded(neo4jVersion) {
             this.neo4jVersion = neo4jVersion
@@ -96,12 +95,8 @@ export default {
             this.$neo4j.desktop.sendMetrics(
                 name,
                 'pageview',
-                [
-                    { name: 'version', value: version },
-                    { name: 'path', value: this.$route.path } ,
-                ],
+                { version, path:this.$route.path }
             )
-            .catch(e => console.log(e))
         },
     },
 }

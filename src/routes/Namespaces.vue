@@ -141,6 +141,8 @@ export default {
 
             this.loading = true
 
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: `${this.$route.name}.add` })
+
             this.$neo4j.run(this.addCypher)
                 .then(() => this.confirmation = `Namespace added for ${this.namespace} with prefix ${this.prefix}`)
                 .then(() => this.loadNamespaces())
@@ -150,6 +152,8 @@ export default {
         addFromText() {
             this.loading = true
 
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: `${this.$route.name}.addFromText` })
+
             return this.$neo4j.run(this.addFromTextCypher)
                 // .then(res => this.confirmation = `${res.records.length} namespace${res.records.length !== 1 ? 's' : ''} added from text`)
                 .then(() => this.confirmation = `Namespaces successfully added from text`)
@@ -158,12 +162,16 @@ export default {
                 .finally(() => this.loading = false)
         },
         remove(namespace) {
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: `${this.$route.name}.remove` })
+
             return this.$neo4j.run(`CALL n10s.nsprefixes.remove($prefix)`, { prefix: namespace.prefix })
                 .then(() => this.confirmation = `Namespace for ${this.prefix} removed`)
                 .then(() => this.loadNamespaces())
                 .catch(e => this.error = e)
         },
         removeAll() {
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: `${this.$route.name}.removeAll` })
+
             return this.$neo4j.run(`CALL n10s.nsprefixes.removeAll()`)
                 .then(() => this.confirmation = `All namespaces have been removed`)
                 .then(() => this.loadNamespaces())

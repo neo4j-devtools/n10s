@@ -147,6 +147,8 @@ export default {
         addMapping() {
             if ( !this.addMappingCypher ) return;
 
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: `${this.$route.name}.add` })
+
             this.loading = true
             return this.$neo4j.run(this.addMappingCypher)
                 .then(() => this.confirmation = `Mapping added from ${this.namespace}${this.schemaElementName} to ${this.graphElementName}`)
@@ -156,6 +158,9 @@ export default {
         },
         dropMapping(mapping) {
             this.loading = true
+
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: `${this.$route.name}.add` })
+
             return this.$neo4j.run(`CALL n10s.mapping.drop($elemName)`, mapping)
                 .then(() => this.confirmation = `Mapping dropped for from ${mapping.elemName}`)
                 .then(() => this.loadMappings())

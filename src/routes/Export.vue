@@ -76,6 +76,8 @@ export default {
         runQuery() {
             const token = btoa(`${this.principal}:${this.credentials}`)
 
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: this.$route.name })
+
             fetch(this.url, {
                 headers: {
                     Authorization: `Basic ${token}`

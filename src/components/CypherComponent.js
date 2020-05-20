@@ -1,3 +1,5 @@
+import { name } from '../../package.json'
+
 export default {
     data: () => ({
         loading: false,
@@ -24,6 +26,8 @@ export default {
             this.confirmation = false
 
             this.displayAsFixed = this.displayAs
+
+            this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: this.$route.name })
 
             return this.$neo4j.run(this.cypher, this.params)
                 .then(res => {
