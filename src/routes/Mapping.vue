@@ -60,7 +60,7 @@
                     />
                 </sui-form-field>
 
-                <pre v-if="addMappingCypher">{{ addMappingCypher }}</pre>
+                <code-block v-if="addMappingCypher" :code="addMappingCypher" />
 
                 <sui-button primary :loading="loading" @click.prevent="addMapping">Add Mapping</sui-button>
             </sui-form>
@@ -69,7 +69,12 @@
 </template>
 
 <script>
+import CodeBlock from '../components/CodeBlock'
+
 export default {
+    components: {
+        CodeBlock,
+    },
     data: () => ({
         loading: false,
         confirmation: undefined,

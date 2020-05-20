@@ -73,8 +73,6 @@ export default {
 
             `)
                 .then(({ records }) => {
-                    // console.log(records);
-
                     const [ first ] = records
 
                     if ( first !== undefined ) {
@@ -95,6 +93,6 @@ export default {
 
 <style>
 .ui.dimmer .ui.message {
-    text-align: left;;
+    text-align: left;
 }
 </style>

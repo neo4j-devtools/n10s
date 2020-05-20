@@ -3,9 +3,7 @@
 </template>
 
 <script>
-/* eslint-disable */
 import asciidoctor from 'asciidoctor'
-
 
 export default {
     props: {
@@ -27,8 +25,6 @@ export default {
                     .forEach(a => a.setAttribute('target', '_blank'))
             })
             .catch(e => {
-                console.log(e);
-
                 this.error = e
                 this.content = `<div class="ui negative message">${e}</div>`
             })

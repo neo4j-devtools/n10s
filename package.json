@@ -12,6 +12,8 @@
   "dependencies": {
     "asciidoctor": "^2.2.0",
     "core-js": "^3.6.5",
+    "highlightjs": "^9.16.2",
+    "highlightjs-cypher": "^1.1.1",
     "nodemon": "^2.0.4",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.10.1",
@@ -19,7 +21,8 @@
     "visjs-network": "^4.24.11",
     "vue": "^2.6.11",
     "vue-neo4j": "^0.4.3",
-    "vue-router": "^3.1.6"
+    "vue-router": "^3.1.6",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@neo4j/code-signer": "^1.1.1",

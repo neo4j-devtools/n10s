@@ -1,7 +1,7 @@
 <template>
     <sui-tab class="cypher-tabs" :active-index="tab">
         <sui-tab-pane :title="previewTitle">
-            <pre v-html="cypher" />
+            <code-block language="cypher" :code="cypher" />
             <slot />
         </sui-tab-pane>
         <sui-tab-pane title="Results">
@@ -18,11 +18,13 @@
 </template>
 
 <script>
+import CodeBlock from './CodeBlock'
 import n10sResult from './Result'
 
 export default {
     components: {
         n10sResult,
+        CodeBlock,
     },
     props: {
         tab: Number,

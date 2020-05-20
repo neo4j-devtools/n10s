@@ -181,16 +181,11 @@
 
 <script>
 import { handleVocabUriOptions, handleMultivalOptions, handleRDFTypesOptions } from '../constants'
-
-// import Asciidoc from '@/components/Asciidoc'
 import CypherComponent from '@/components/CypherComponent'
 
 export default {
     name: 'config',
     mixins: [ CypherComponent, ],
-    components: {
-        // Asciidoc,
-    },
     data: () => ({
         buttonText: 'Create Config',
 
@@ -232,13 +227,11 @@ export default {
                 }
 
                 // Add quotes
-                console.log(key, booleans, booleans.includes(key));
-
                 value = booleans.includes(key) ? value.toString() : `'${value}'`
 
                 params.push(`${key}: ${value}`)
-
             })
+
             if ( params.length ) {
                 params = `{\n\t${params.join(',\n\t')}\n}`
             }

@@ -1,47 +1,15 @@
 <template>
-    <sui-container>
-        <h1 is="sui-header">Delete Data</h1>
+    <n10s-query-form
+        buttonText="Delete Data"
+        procedure="n10s.rdf.delete"
+        queryLabel="RDF"
+    >
+                <h1 is="sui-header">Delete Data</h1>
 
         <p>
-            The main method to delete RDF is <code>semantics.deleteRDF</code>.
-            It deletes from Neo4j the triples returned by an url. This url can point to an RDF file (local or remote) or a service producing RDF dynamically. All delete procedures take the following three parameters, like the import procedures:
+            The <code>n10s.rdf.delete.*</code> procedure deletes all of the triples contained in an RDF statement.
         </p>
-
-        <sui-form>
-            <sui-form-field>
-                <label>URL</label>
-                <sui-input
-                    type="url"
-                    placeholder="Password"
-                    icon="server"
-                    icon-position="left"
-                    v-model="url"
-                />
-            </sui-form-field>
-            <sui-form-field>
-                <label>Format</label>
-                <sui-dropdown
-                    fluid
-                    :options="formats"
-                    placeholder="Format"
-                    search
-                    selection
-                    v-model="format"
-                />
-            </sui-form-field>
-            <sui-button primary :loading="loading" @click.prevent="runQuery">
-                {{ buttonText }}
-            </sui-button>
-        </sui-form>
-
-        <n10s-cypher-tabs
-            :cypher="cypher"
-            :result="result"
-            :error="error"
-            :tab="tab"
-            :buttonText="buttonText"
-        />
-    </sui-container>
+    </n10s-query-form>
 </template>
 
 <script>

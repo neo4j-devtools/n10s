@@ -46,7 +46,7 @@
                         />
                     </sui-form-field>
 
-                    <pre v-if="addCypher">{{ addCypher }}</pre>
+                    <code-block v-if="addCypher" :code="addCypher" />
 
                     <sui-button primary :loading="loading" @click.prevent="add">Add Namespace</sui-button>
                 </sui-form>
@@ -58,7 +58,8 @@
                         <textarea v-model="txt" rows="10"></textarea>
                     </sui-form-field>
 
-                    <pre v-if="addFromTextCypher">{{ addFromTextCypher }}</pre>
+                    <code-block v-if="addFromTextCypher" :code="addFromTextCypher" />
+
                     <sui-button primary :loading="loading" @click.prevent="addFromText">Extract Namespaces</sui-button>
                 </sui-form>
             </sui-tab-pane>
@@ -68,7 +69,7 @@
             <h3 is="sui-header">Remove All Namespace Prefixes</h3>
             <p>Remove all Schemas</p>
 
-            <pre>CALL n10s.nsprefixes.removeAll()</pre>
+            <pre><span style="color: #FF1493">CALL</span> n10s.nsprefixes.removeAll()</pre>
             <p>Be careful, this cannot be undone.</p>
 
             <sui-button negative @click.prevent="removeAll">Remove All Namespace Prefixes</sui-button>
@@ -77,7 +78,12 @@
 </template>
 
 <script>
+import CodeBlock from '../components/CodeBlock'
+
 export default {
+    components: {
+        CodeBlock,
+    },
     data: () => ({
         // Add Schema
         loading: true,
@@ -105,7 +111,10 @@ export default {
             return `CALL n10s.nsprefixes.add('${this.prefix.replace(/'/g, "\\'")}', '${this.namespace.replace(/'/g, "\\'")}')`
         },
         addFromTextCypher() {
-            return `WITH '${this.txt.replace(/'/g, "\\'")}' AS txt\nCALL n10s.nsprefixes.addFromText(txt)\nYIELD prefix, namespace\nRETURN prefix, namespace`
+            const txt = this.txt.replace(/'/g, "\\'")
+                .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+            return `CALL n10s.nsprefixes.addFromText('${txt}')`
         },
     },
 

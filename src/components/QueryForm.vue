@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { queryTypes, formats, url, outputFormats } from '../constants';
+import { queryTypes, formats, outputFormats } from '../constants';
 import CypherComponent from '@/components/CypherComponent'
 
 export default {
@@ -98,10 +98,6 @@ export default {
             type: String,
             default: 'Run Query',
         },
-        defaultUrl: {
-            type: String,
-            default: url
-        },
         queryLabel: {
             type: String,
             default: 'Query',
@@ -109,19 +105,11 @@ export default {
     },
     data: () => ({
         loading: false,
-        value: '',
         outputFormats,
-        displayAs: outputFormats[0].value,
-        queryType: queryTypes[2].value,
         queryTypes,
         formats,
-        format: 'Turtle',
-        url,
         displayAsFixed: '',
     }),
-    mounted() {
-        this.url = this.defaultUrl
-    },
     computed: {
         showTextbox() {
             return (this.queryType === 'inline' || this.queryType === 'local' && this.value)
@@ -143,8 +131,50 @@ export default {
         runDisabled() {
             return ( this.queryType === 'fetch' && !this.url ) || ( this.queryType !== 'fetch' && this.value === '' )
         },
+        queryType: {
+            get() {
+                return this.$store.state.queryType
+            },
+            set(value) {
+                return this.$store.commit('setQueryType', value)
+            },
+        },
+        displayAs: {
+            get() {
+                return this.$store.state.displayAs
+            },
+            set(value) {
+                return this.$store.commit('setDisplayAs', value)
+            },
+        },
+        url: {
+            get() {
+                return this.queryLabel == 'SHACL' ? this.$store.state.shaclUrl : this.$store.state.url
+            },
+            set(value) {
+                const mutation = this.queryLabel == 'SHACL' ? 'setShaclUrl' : 'setUrl'
+                return this.$store.commit(mutation, value)
+            },
+        },
+        format: {
+            get() {
+                return this.queryLabel == 'SHACL' ? this.$store.state.shaclFormat :  this.$store.state.format
+            },
+            set(value) {
+                const mutation = this.queryLabel == 'SHACL' ? 'setShaclFormat' : 'setFormat'
+                return this.$store.commit(mutation, value)
+            },
+        },
+        value: {
+            get() {
+                return this.queryLabel == 'SHACL' ? this.$store.state.shaclValue :  this.$store.state.value
+            },
+            set(value) {
+                const mutation = this.queryLabel == 'SHACL' ? 'setShaclValue' : 'setValue'
+                return this.$store.commit(mutation, value)
+            },
+        },
     },
-
     methods: {
         fileChanged(e) {
             const fr = new FileReader()

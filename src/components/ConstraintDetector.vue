@@ -7,15 +7,15 @@
             header="Constraint Required"
         >
             <p>
-                To run n10s you also need a constraint on <code>:{{ label }}({{property }})</code>.
+                To run n10s you also need a constraint on <code>:{{ label }}({{ property }})</code>.
                 Either run the following code or click <strong>&lt; Create Constraint &gt;</strong> to create the constraint.
             </p>
 
-            <pre v-html="createConstraintCypher" />
+            <code-block :code="createConstraintCypher" />
 
             <sui-message class="negative" v-if="error" v-html="error.message" />
 
-            <sui-button primary @click="createConstraint">
+            <sui-button primary :loading="loading" @click="createConstraint">
                 Create Constraint
             </sui-button>
         </sui-message>
@@ -24,9 +24,13 @@
 </template>
 
 <script>
-/* eslint-disable */
+import CodeBlock from './CodeBlock'
+
 export default {
     name: 'constraint-detector',
+    components: {
+        CodeBlock,
+    },
     props: {
         database: null,
         onConstraintsLoaded: Function,
@@ -64,13 +68,19 @@ export default {
                 .catch(e => this.error = e)
                 .finally(() => this.loading = false)
         },
-        createConstraint() {
+        createConstraint(e) {
             this.error = false
             this.loading = 'Creating Constraint...'
 
-            this.$neo4j.run(this.createConstraintCypher)
-                .catch(e => this.error = e)
-                .then(() => this.checkForConstraints())
+            const interval = e ? 1000 : 0
+
+            setTimeout(() => {
+                this.$neo4j.run(this.createConstraintCypher)
+                    .catch(e => this.error = e)
+                    .then(() => this.checkForConstraints())
+            }, interval)
+
+
         },
     },
     computed: {

@@ -1,7 +1,6 @@
 <template>
     <div>
         <n10s-query-form
-            :defaultUrl="url"
             buttonText="Load Constraints"
             procedure="n10s.validation.shacl.import"
             queryLabel="SHACL"
@@ -30,15 +29,11 @@
 </template>
 
 <script>
-/* eslint-disable */
-import { queryTypes, formats, shaclUrl, } from '../constants';
 import CypherComponent from '../components/CypherComponent'
 
 export default {
     mixins: [ CypherComponent, ],
     data: () => ({
-        url: shaclUrl,
-
         validationResults: false,
         validationCypher: 'CALL n10s.validation.shacl.validate()',
         validationTab: 0,
@@ -58,7 +53,3 @@ export default {
     },
 }
 </script>
-
-<style>
-
-</style>
