@@ -112,7 +112,6 @@ export default {
         },
         addFromTextCypher() {
             const txt = this.txt.replace(/'/g, "\\'")
-                .replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
             return `CALL n10s.nsprefixes.addFromText('${txt}')`
         },
