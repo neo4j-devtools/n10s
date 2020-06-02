@@ -14,10 +14,29 @@
                 />
             </sui-form-field>
 
+            <sui-form-field>
+                <label>Input Format</label>
+                <sui-dropdown
+                    fluid
+                    :options="formats"
+                    placeholder="Format"
+                    search
+                    selection
+                    v-model="format"
+                />
+            </sui-form-field>
+
             <!-- inline -->
             <sui-form-field v-if="queryType == 'local'">
                 <label>Import</label>
-                <sui-input type="file" accept="text/*" @change="fileChanged" />
+                <sui-input type="file" :accept="accept.join(',')" @change="fileChanged" />
+
+                <div class="hint">
+                <p>The accepted mime types for <strong v-html="format" /> are:</p>
+                    <ul>
+                        <li v-for="type in accept" :key="type" v-html="type" />
+                    </ul>
+                </div>
             </sui-form-field>
 
             <sui-form-field v-if="showTextbox">
@@ -34,18 +53,6 @@
                     icon="server"
                     icon-position="left"
                     v-model="url"
-                />
-            </sui-form-field>
-
-            <sui-form-field>
-                <label>Input Format</label>
-                <sui-dropdown
-                    fluid
-                    :options="formats"
-                    placeholder="Format"
-                    search
-                    selection
-                    v-model="format"
                 />
             </sui-form-field>
 
@@ -130,6 +137,9 @@ export default {
         },
         runDisabled() {
             return ( this.queryType === 'fetch' && !this.url ) || ( this.queryType !== 'fetch' && this.value === '' )
+        },
+        accept() {
+            return [ 'text/*', ].concat(  formats.find(f => f.value === this.format).types )
         },
         queryType: {
             get() {

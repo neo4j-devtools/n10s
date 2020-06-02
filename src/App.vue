@@ -230,6 +230,17 @@ export default {
     border-color: #0047a2 !important;
 }
 
+.ui.form .hint {
+    opacity: .7;
+    margin-top: 12px;
+}
+
+.ui.form .hint p, .ui.form .hint ul {
+    margin: 0;
+}
+
+
+
 .footer {
     color: rgba(0, 0, 0, .4);
     padding: 24px 0 12px;
@@ -289,6 +300,10 @@ pre, textarea {
 }
 .forced .selected i {
     float: right;
+}
+
+.forced .selected .ui.list .item {
+    word-break: break-all;
 }
 
 .results {
