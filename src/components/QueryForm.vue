@@ -125,7 +125,7 @@ export default {
             const displayAs = this.showDisplayAs ? `.${this.displayAs}` : ''
 
             const procedure = `${this.procedure}${displayAs}.${this.procedureType}`
-            let value = this.queryType === 'fetch' ? this.url : `\n${this.value.replace("'", "\\'")}\n`
+            let value = this.queryType === 'fetch' ? this.url : `\n${this.value.replace(/'/g, "\\'")}\n`
 
             return `CALL ${procedure}(
   '${value}',

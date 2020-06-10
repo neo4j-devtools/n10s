@@ -1,3 +1,3 @@
-# n10s
+# n10s version 0.2.9
 
-Nothing to see here...
+- Fixed bug on export screen where URL would always be `localhost`

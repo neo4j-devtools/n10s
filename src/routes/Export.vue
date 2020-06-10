@@ -56,6 +56,8 @@ export default {
     created() {
         const driver = this.$neo4j.getDriver()
 
+        this.host = driver._address._host
+
         const auth = driver._authToken
 
         this.scheme = auth.scheme
