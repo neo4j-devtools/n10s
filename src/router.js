@@ -9,6 +9,7 @@ import Delete from './routes/Delete'
 import Export from './routes/Export'
 import Mapping from './routes/Mapping'
 import Namespaces from './routes/Namespaces'
+import Sparql from './routes/Sparql'
 
 import Validation from './routes/Validation'
 
@@ -24,6 +25,7 @@ export default new VueRouter({
         { name: 'mapping',  path: '/mapping', component: Mapping, },
         { name: 'namespaces',  path: '/namespaces', component: Namespaces, },
         { name: 'validation',  path: '/validation', component: Validation, },
+        { name: 'sparql',  path: '/sparql', component: Sparql, },
 
         // Redirect to Home
         { name: 'home', path: '/', component: Home, },

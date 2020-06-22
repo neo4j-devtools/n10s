@@ -17,6 +17,14 @@ const state = {
     shaclUrl,
     shaclValue: '',
     shaclFormat: formats[0].value,
+
+    // SPARQL Headers
+    setAcceptHeader: false,
+    authorizationType: 'none',
+    authorization: '',
+    username: '',
+    password: '',
+
 }
 
 const mutations = {
@@ -43,6 +51,21 @@ const mutations = {
     },
     setShaclFormat(state, format) {
         state.shaclFormat = format
+    },
+    setAcceptHeader(state, value) {
+        state.setAcceptHeader = value
+    },
+    setAuthorizationType(state, value) {
+        state.authorizationType = value
+    },
+    setAuthorization(state, value) {
+        state.authorizationType = value
+    },
+    setUsername(state, value) {
+        state.username = value
+    },
+    setPassword(state, value) {
+        state.password = value
     },
 }
 

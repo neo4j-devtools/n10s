@@ -20,7 +20,8 @@
     "semver": "^7.3.2",
     "visjs-network": "^4.24.11",
     "vue": "^2.6.11",
-    "vue-neo4j": "^0.4.3",
+    "vue-codemirror": "^4.0.6",
+    "vue-neo4j": "^0.4.4",
     "vue-router": "^3.1.6",
     "vuex": "^3.4.0"
   },

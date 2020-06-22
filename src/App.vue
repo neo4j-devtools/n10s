@@ -67,7 +67,7 @@ export default {
                     version,
                     path: this.$route.path
                 }
-            )
+            ).catch(() => {})
         },
         onVersionLoaded(neo4jVersion) {
             this.neo4jVersion = neo4jVersion

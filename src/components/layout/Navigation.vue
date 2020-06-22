@@ -19,6 +19,7 @@
                 <router-link is="sui-menu-item" :to="{ name: 'import' }">Import</router-link>
                 <router-link is="sui-menu-item" :to="{ name: 'export' }">Export</router-link>
                 <router-link is="sui-menu-item" :to="{ name: 'delete' }">Delete</router-link>
+                <!-- <router-link is="sui-menu-item" :to="{ name: 'sparql' }">SPARQL Importer</router-link> -->
 
                 <a class="item docs-link" href="https://neo4j.com/docs/labs/nsmntx/current/" target="_blank">
                     <strong>User Guide</strong>
