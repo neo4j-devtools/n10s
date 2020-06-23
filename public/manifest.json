@@ -10,5 +10,6 @@
     "neo4jDesktop": {
         "apiVersion": "^1.4.0"
     },
-    "homepage": "https://github.com/neo4j-labs/neosemantics"
+    "homepage": "https://github.com/neo4j-labs/neosemantics",
+    "pluginDependencies": ["org.neo4j/neosemantics"]
 }
