@@ -149,7 +149,6 @@ export default {
             type: String,
             default: 'n10s.validation.shacl.import',
         },
-        showDisplayAs: Boolean,
         buttonText: {
             type: String,
             default: 'Run Query',

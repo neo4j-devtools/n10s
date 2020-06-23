@@ -1,6 +1,9 @@
 import { name } from '../../package.json'
 
 export default {
+    props: {
+        showDisplayAs: Boolean,
+    },
     data: () => ({
         loading: false,
         error: false,
@@ -25,7 +28,7 @@ export default {
             this.error = false
             this.confirmation = false
 
-            this.displayAsFixed = this.displayAs
+            this.displayAsFixed = this.showDisplayAs ? this.displayAs : 'table'
 
             this.$neo4j.desktop.sendMetrics(name, 'procedure', { name: this.$route.name })
 
