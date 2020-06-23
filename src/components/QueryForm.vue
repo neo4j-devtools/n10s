@@ -185,7 +185,7 @@ export default {
             let value = this.queryType === 'fetch' ? this.url : `\n${this.value.replace(/'/g, "\\'")}\n`
 
             if ( this.queryType === 'sparql' ) {
-                value = `${this.url}${encodeURI(this.value)}`
+                value = `${this.url}${encodeURIComponent(this.value)}`
             }
 
             return `CALL ${procedure}(
