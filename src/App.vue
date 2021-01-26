@@ -14,7 +14,7 @@
                 closeIcon="angle down"
             />
 
-            <version-detector v-if="!neo4jVersion" :onVersionLoaded="onVersionLoaded" :onLogOut="logOut" :valid='["4.0.*", "4.1.*"]' />
+            <version-detector v-if="!neo4jVersion" :onVersionLoaded="onVersionLoaded" :onLogOut="logOut" :valid='["4.0.*", "4.1.*", "4.2.*"]' />
             <plugin-detector v-else-if="!plugins" :onPluginsLoaded="onPluginsLoaded" />
             <constraint-detector v-else-if="!constraints" :database="database" :onConstraintsLoaded="onConstraintsLoaded" />
 
