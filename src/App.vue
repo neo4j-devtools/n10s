@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="ui">
-        <neo4j-connect v-if="!driver" :onConnect="onConnect" protocol="bolt" password="neo">
+        <neo4j-connect v-if="!driver" :onConnect="onConnect" protocol="neo4j" password="neo">
             <img class="logo" slot="logo" src="./assets/img/neosemantics.png" alt="Neosemantics" />
             <div class="footer" slot="footer">n10s v{{ version }}</div>
         </neo4j-connect>
