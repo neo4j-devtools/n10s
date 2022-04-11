@@ -45,4 +45,8 @@ npx @neo4j/code-signer --verify \
   --app ./package \
   --root-cert ~/.ssh/neo4j_desktop.cert
 
+# Publish on NPM
 npm publish --access public *.tgz
+
+# Sync to S3
+aws s3 sync --profile devrel dist s3://n10s.graphapp.io
