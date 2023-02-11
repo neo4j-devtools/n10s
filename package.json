@@ -15,7 +15,7 @@
     "highlightjs": "^9.16.2",
     "highlightjs-cypher": "^1.1.1",
     "neo4j-driver": "^4.4.5",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.10.1",
     "semver": "^7.3.2",
