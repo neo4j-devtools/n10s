@@ -45,10 +45,9 @@ export default {
 
             setTimeout(() => {
                 this.$neo4j.run(`
-                    CALL dbms.procedures() YIELD name
-                    WITH name WHERE name STARTS WITH 'n10s' OR name STARTS WITH 'neosemantics'
-                    WITH split(name, ".")[0] as prefix, count(*) AS count, collect(name) AS procedures
-                    RETURN collect({prefix: prefix, count: count, procedures: procedures}) AS plugins
+                    SHOW PROCEDURES YIELD name
+                    WHERE name STARTS WITH 'n10s' OR name STARTS WITH 'neosemantics'
+                    RETURN split(name,".")[0] as plugins, count(*) as count
                 `)
                     .then(({ records }) => {
                         const [ first ] = records

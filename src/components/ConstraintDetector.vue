@@ -53,7 +53,7 @@ export default {
             this.loading = 'Checking Constraints...'
 
             this.$neo4j.run(`
-                CALL db.schemaStatements()
+                SHOW CONSTRAINTS 
                 YIELD name
                 WHERE name = $name
                 RETURN count(*) AS count
@@ -85,7 +85,7 @@ export default {
     },
     computed: {
         createConstraintCypher() {
-            return `CREATE CONSTRAINT ${this.name} ON (r:${this.label}) ASSERT r.${this.property} IS UNIQUE`
+            return `CREATE CONSTRAINT ${this.name} FOR (r:${this.label}) REQUIRE r.${this.property} IS UNIQUE`
         }
     },
     watch: {
