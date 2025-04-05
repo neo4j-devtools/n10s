@@ -18,7 +18,7 @@
     "nodemon": "^2.0.4",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.10.1",
-    "semver": "^7.3.2",
+    "semver": "^7.5.2",
     "visjs-network": "^4.24.11",
     "vue": "^2.6.11",
     "vue-codemirror": "^4.0.6",
